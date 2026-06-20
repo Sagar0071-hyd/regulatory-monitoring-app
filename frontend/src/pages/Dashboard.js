@@ -5,53 +5,61 @@ import './Dashboard.css';
 
 const sampleData = {
   'regulatory-updates': [
-    { region: 'AMR', country: 'USA', regulation: 'FDA GLP-1 Compounding — Cease manufacturing', category: 'Pharma', deadline: '2026-05-22', daysLeft: 2, actionRequired: 'Halt production', source: 'FDA' },
-    { region: 'EUA', country: 'India', regulation: 'CDSCO Schedule A Cosmetics — Reformulation declarations', category: 'Cosmetics', deadline: '2026-05-25', daysLeft: 5, actionRequired: 'Submit reformulation', source: 'CDSCO' },
-    { region: 'EUA', country: 'EU', regulation: 'EU MDR EUDAMED — Actor Registration & UDI Database', category: 'Devices', deadline: '2026-05-26', daysLeft: 6, actionRequired: 'Register actors', source: 'EMA' },
-    { region: 'EUA', country: 'India', regulation: 'MoEFCC PFAS Restriction — Consultation closes', category: 'Chemicals', deadline: '2026-05-30', daysLeft: 10, actionRequired: 'Comment on proposal', source: 'MoEFCC' },
-    { region: 'AMR', country: 'USA', regulation: 'EPA Formaldehyde (Home Care) — Comment period closes', category: 'Household', deadline: '2026-05-30', daysLeft: 10, actionRequired: 'Submit comment', source: 'EPA' },
+    { region: 'AMR', country: 'USA', regulation: 'FDA GLP-1 Compounding — Cease manufacturing', sector: 'Pharmaceuticals & Drugs', deadline: '2026-05-22', daysLeft: 8, severity: 'Urgent', source: 'FDA' },
+    { region: 'EUA', country: 'India', regulation: 'CDSCO Schedule A Cosmetics — Reformulation declarations', sector: 'Cosmetics & Personal Care', deadline: '2026-05-25', daysLeft: 11, severity: 'Urgent', source: 'CDSCO' },
+    { region: 'EUA', country: 'EU', regulation: 'EU MDR EUDAMED — Actor Registration & UDI Database', sector: 'Medical Devices', deadline: '2026-05-26', daysLeft: 12, severity: 'Urgent', source: 'EMA' },
+    { region: 'EUA', country: 'EU', regulation: 'EU IVDR — Class C & D IVD Notified Body certificates', sector: 'Medical Devices', deadline: '2026-05-26', daysLeft: 12, severity: 'Urgent', source: 'EMA' },
+    { region: 'EUA', country: 'India', regulation: 'MoEFCC PFAS Restriction — Consultation closes', sector: 'Chemicals & Industrial', deadline: '2026-05-30', daysLeft: 16, severity: 'High', source: 'MoEFCC' },
   ],
   'deadline-countdown': [
-    { region: 'AMR', country: 'USA', regulation: 'FDA GLP-1 Compounding', category: 'Pharma', deadline: '2026-05-22', daysLeft: 2, severity: 'urgent' },
-    { region: 'EUA', country: 'India', regulation: 'CDSCO Schedule A Cosmetics Prohibition', category: 'Cosmetics', deadline: '2026-06-01', daysLeft: 12, severity: 'urgent' },
-    { region: 'EUA', country: 'EU', regulation: 'EU MDR EUDAMED — Actor Registration', category: 'Devices', deadline: '2026-05-26', daysLeft: 6, severity: 'urgent' },
-    { region: 'EUA', country: 'EU', regulation: 'EU IVDR — Class C & D IVD Notified Body', category: 'Devices', deadline: '2026-05-26', daysLeft: 6, severity: 'urgent' },
-    { region: 'EUA', country: 'India', regulation: 'MoEFCC PFAS Restriction', category: 'Chemicals', deadline: '2026-05-30', daysLeft: 10, severity: 'high' },
+    { region: 'AMR', country: 'USA', regulation: 'FDA GLP-1 Compounding — Cease manufacturing', sector: 'Pharmaceuticals & Drugs', deadline: '2026-05-22', daysLeft: 8, severity: 'Urgent' },
+    { region: 'EUA', country: 'India', regulation: 'CDSCO Schedule A Cosmetics Prohibition — Effective', sector: 'Cosmetics & Personal Care', deadline: '2026-06-01', daysLeft: 18, severity: 'Urgent' },
+    { region: 'EUA', country: 'EU', regulation: 'EU MDR EUDAMED — Actor Registration & UDI Database', sector: 'Medical Devices', deadline: '2026-05-26', daysLeft: 12, severity: 'Urgent' },
+    { region: 'EUA', country: 'EU', regulation: 'EU IVDR — Class C & D IVD Notified Body certificate', sector: 'Medical Devices', deadline: '2026-05-26', daysLeft: 12, severity: 'Urgent' },
+    { region: 'EUA', country: 'India', regulation: 'MoEFCC PFAS Restriction — Consultation closes', sector: 'Chemicals & Industrial', deadline: '2026-05-30', daysLeft: 16, severity: 'High' },
   ],
   'recalls': [
-    { region: 'AMR', country: 'USA', product: 'Metformin HCl ER Tablets', company: 'Sun Pharma', category: 'Pharma', severity: 'Class I', reason: 'NDMA exceeds acceptable daily intake', date: '2026-05-20', source: 'FDA' },
-    { region: 'AMR', country: 'USA', product: 'IGIV-C Intravenous Immunoglobulin', company: 'BioAtla LLC', category: 'Biologics', severity: 'Class I', reason: 'Glass fragment contamination', date: '2026-05-18', source: 'FDA' },
-    { region: 'AMR', country: 'USA', product: 'ProFuel Energy Bars', company: 'NutraBiotics Inc.', category: 'Food', severity: 'Class I', reason: 'Undeclared tree nuts', date: '2026-05-15', source: 'FDA' },
-    { region: 'EUA', country: 'India', product: 'Amoxicillin + Clavulanate Tablets', company: 'Cipla Limited', category: 'Pharma', severity: 'Class I', reason: 'Sub-standard quality; active content below 85%', date: '2026-05-17', source: 'CDSCO' },
-    { region: 'ROW', country: 'China', product: 'InsuPump i-Pro Insulin Infusion Pump', company: 'MicroTech Medical', category: 'Devices', severity: 'Class I', reason: 'Motor failure causing uncontrolled insulin delivery', date: '2026-05-14', source: 'NMPA' },
+    { region: 'AMR', country: 'USA', product: 'Metformin Hydrochloride ER Tablets', company: 'Sun Pharma Industries Ltd.', severity: 'Class I', reason: 'NDMA exceeds acceptable daily intake', date: '2026-05-08', source: 'FDA' },
+    { region: 'AMR', country: 'USA', product: 'IGIV-C Intravenous Immunoglobulin 10%', company: 'BioAtla LLC', severity: 'Class I', reason: 'Glass fragments (particulate contamination)', date: '2026-05-06', source: 'FDA' },
+    { region: 'AMR', country: 'USA', product: 'CareLink™ Cardiac Monitor Firmware v4.2.1', company: 'Medtronic plc', severity: 'Class II', reason: 'Software defect causing false arrhythmia alarms', date: '2026-05-10', source: 'FDA' },
+    { region: 'AMR', country: 'USA', product: 'ProFuel Energy Bars (12 SKUs)', company: 'NutraBiotics Inc.', severity: 'Class I', reason: 'Undeclared tree nuts — anaphylaxis risk', date: '2026-05-07', source: 'FDA' },
+    { region: 'EUA', country: 'EU', product: 'DermaWhite Intensive Lightening Cream', company: 'CosmoLab GmbH (Germany)', severity: 'RAPEX Alert', reason: 'Hydroquinone 3.2% + Clobetasol propionate', date: '2026-05-09', source: 'RAPEX' },
+    { region: 'ROW', country: 'China', product: 'InsuPump i-Pro Insulin Infusion Pump (12,400 units)', company: 'MicroTech Medical (Hangzhou)', severity: 'Class III', reason: 'Motor failure — uncontrolled insulin delivery', date: '2026-05-06', source: 'NMPA' },
+    { region: 'ROW', country: 'Japan', product: 'Methotrexate Tablets 2mg (Lot MTX-2603A)', company: 'Pfizer Japan Inc.', severity: 'Class I', reason: 'Weekly dosing instruction omitted — 10–14× overdose risk', date: '2026-05-04', source: 'PMDA' },
   ],
   'ma-tracker': [
-    { acquirer: 'Syneos Health', target: 'Clarivate Regulatory Intelligence', sector: 'Regulatory Tech', value: 'USD 320M', date: '2026-05-22', driver: 'Cortellis database integration' },
-    { acquirer: 'ICON plc', target: 'Accellacare Regulatory Division', sector: 'Regulatory Consulting', value: 'USD 280M', date: '2026-05-20', driver: 'Regulatory advisory expansion' },
+    { acquirer: 'Veeva Systems', target: 'Vault RIM AI launch', region: 'Global', type: 'New Tool', value: 'N/A', date: '2026-05-08' },
+    { acquirer: 'IQVIA', target: 'Novartis (5-yr strategic contract)', region: 'Global', type: 'New Client', value: '~USD 45M', date: '2026-05-06' },
+    { acquirer: 'PharmaLex (Cencora)', target: 'AREC Hyderabad launch', region: 'India/APAC', type: 'New Service', value: 'N/A', date: '2026-05-07' },
+    { acquirer: 'ICON plc', target: 'Accellacare (regulatory division)', region: 'Global', type: 'Acquisition', value: 'USD 280M', date: '2026-05-09' },
+    { acquirer: 'Syneos Health', target: 'Clarivate Regulatory Intelligence', region: 'Global', type: 'Acquisition', value: 'USD 320M', date: '2026-05-10' },
   ],
   'competitors': [
-    { company: 'Veeva Systems', type: 'Solution Launch', service: 'Vault RIM AI with generative AI assistant', markets: 'Global', date: '2026-05-22' },
-    { company: 'Navitas Life Sciences', type: 'Solution Launch', service: 'NavRegAI regulatory intelligence engine', markets: 'Global', date: '2026-05-20' },
-    { company: 'PharmaLex (Cencora)', type: 'Center Launch', service: 'AI-Enabled Regulatory Excellence Centre', markets: 'APAC', date: '2026-05-19' },
+    { company: 'Veeva Systems', type: 'New Tool', service: 'Vault RIM AI launch', markets: 'Global', date: '2026-05-08' },
+    { company: 'IQVIA', type: 'New Client', service: 'Novartis (5-yr strategic contract)', markets: 'Global', date: '2026-05-06' },
+    { company: 'PharmaLex (Cencora)', type: 'New Service', service: 'AREC Hyderabad launch', markets: 'India/APAC', date: '2026-05-07' },
     { company: 'Extedo', type: 'Product Release', service: 'IDMP Suite v5.0 with automated validation', markets: 'EU', date: '2026-05-18' },
   ],
   'rfi-rfp': [
-    { company: 'Astellas Pharma', type: 'Innovator', service: 'Global eCTD authoring & submissions gateway', markets: 'USA, EU, Japan, China, Canada', status: 'Confirmed', timeline: '2026–2027' },
-    { company: 'Bayer AG', type: 'Innovator', service: 'Cloud-native RIMS platform (100+ markets)', markets: 'Global', status: 'Confirmed', timeline: '2026–H1 2027' },
-    { company: 'Takeda Pharmaceutical', type: 'Innovator', service: 'Enterprise RIMS upgrade post-Shire integration', markets: 'Global', status: 'Confirmed', timeline: '2026–2027' },
-    { company: 'Sanofi SA', type: 'Innovator', service: 'AI-powered labelling & artwork management', markets: 'Global', status: 'Confirmed', timeline: '2026–H1 2027' },
+    { company: 'Astellas Pharma Inc.', type: 'Innovator Pharma', service: 'Global eCTD authoring; simultaneous FDA/EMA/PMDA/NMPA submissions', markets: 'USA, EU, Japan, China, Canada', status: 'Confirmed', timeline: '2026–2027' },
+    { company: 'Dr. Reddy\'s Laboratories', type: 'Generics', service: 'Managed eCTD publishing (150+ dossiers)', markets: 'EU27, UK, India', status: 'Confirmed', timeline: '2026' },
+    { company: 'Teva Pharmaceutical', type: 'Generics', service: 'Generic drug regulatory operations (200+ ANDAs)', markets: 'USA, EU', status: 'Market Intel', timeline: '2026–2027' },
+    { company: 'Sanofi SA', type: 'Innovator Pharma', service: 'AI-powered labelling & artwork (120+ countries)', markets: 'Global', status: 'Confirmed', timeline: '2026–H1 2027' },
+    { company: 'Novartis AG (IDMP)', type: 'Innovator Pharma', service: 'ISO IDMP implementation (600+ EU products)', markets: 'EU27', status: 'Confirmed', timeline: '2026' },
+    { company: 'AbbVie Inc.', type: 'Innovator Pharma', service: 'IDMP platform (Humira + portfolio)', markets: 'EU27, USA', status: 'Confirmed', timeline: '2026' },
+    { company: 'Zimmer Biomet Holdings', type: 'Medical Device', service: 'EU MDR Class III orthopaedic (60+ systems)', markets: 'EU27, UK, Canada, Australia', status: 'Confirmed', timeline: '2026–2027' },
   ],
   'regulatory-services': [
-    { provider: 'Parexel International', type: 'FSP', service: 'Exclusive regulatory FSP for Takeda oncology portfolio', scope: '200+ licences' },
-    { provider: 'Regulatory Compliance Associates (RCA)', type: 'Consulting', service: 'FDA Warning Letter remediation for generic manufacturers', scope: 'USD 18M combined' },
-    { provider: 'Halloran Consulting Group', type: 'Practice Launch', service: 'EU MDR/IVDR practice with 12 specialists', scope: 'EU27' },
-    { provider: 'Maetrics', type: 'Technology', service: 'AI-Powered Technical File Review for MDR Class IIb/III devices', scope: '40% faster' },
+    { provider: 'Parexel International', type: 'FSP', service: 'Exclusive regulatory FSP for Takeda oncology portfolio', scope: '200+ licences', region: 'APAC' },
+    { provider: 'Regulatory Compliance Associates (RCA)', type: 'Consulting', service: 'FDA Warning Letter remediation for generic manufacturers', scope: 'USD 18M combined', region: 'AMR' },
+    { provider: 'Halloran Consulting Group', type: 'Practice Launch', service: 'EU MDR/IVDR practice with 12 specialists', scope: 'EU27', region: 'EUA' },
+    { provider: 'Maetrics', type: 'Technology', service: 'AI-Powered Technical File Review for MDR Class IIb/III devices', scope: '40% faster', region: 'EUA' },
   ],
   'reg-tools': [
-    { vendor: 'Master Control', tool: 'Enterprise QMS & submissions', features: '1,200-seat Hikma Pharmaceuticals deployment', launchDate: '2026-05-22' },
-    { vendor: 'Compliance Quest', tool: 'MedDevice module', features: 'FDA 21 CFR Part 820 + eSTAR integration', launchDate: '2026-05-20' },
-    { vendor: 'OpenText (Documentum)', tool: 'Extended ECM for Life Sciences', features: 'Sanofi global enterprise deployment (40 countries)', launchDate: '2026-05-18' },
-    { vendor: 'Generis Technologies', tool: 'CARA 8.0', features: 'ISO IDMP-compliant product data model', launchDate: '2026-05-15' },
+    { vendor: 'Master Control', tool: 'Enterprise QMS & submissions', features: '1,200-seat Hikma Pharmaceuticals deployment', launchDate: '2026-05-22', region: 'Global' },
+    { vendor: 'Compliance Quest', tool: 'MedDevice module', features: 'FDA 21 CFR Part 820 + eSTAR integration', launchDate: '2026-05-20', region: 'AMR' },
+    { vendor: 'OpenText (Documentum)', tool: 'Extended ECM for Life Sciences', features: 'Sanofi global enterprise deployment (40 countries)', launchDate: '2026-05-18', region: 'Global' },
+    { vendor: 'Generis Technologies', tool: 'CARA 8.0', features: 'ISO IDMP-compliant product data model', launchDate: '2026-05-15', region: 'EUA' },
   ],
 };
 
@@ -196,10 +204,10 @@ const Dashboard = () => {
                         <th>Region</th>
                         <th>Country</th>
                         <th>Regulation/Event</th>
-                        <th>Category</th>
+                        <th>Sector</th>
                         <th>Deadline</th>
                         <th>Days Left</th>
-                        <th>Action Required</th>
+                        <th>Severity</th>
                         <th>Source</th>
                       </>
                     )}
@@ -208,7 +216,7 @@ const Dashboard = () => {
                         <th>Region</th>
                         <th>Country</th>
                         <th>Regulation/Event</th>
-                        <th>Category</th>
+                        <th>Sector</th>
                         <th>Deadline</th>
                         <th>Days Left</th>
                         <th>Severity</th>
@@ -282,10 +290,10 @@ const Dashboard = () => {
                           <td>{item.region}</td>
                           <td>{item.country}</td>
                           <td className="title">{item.regulation}</td>
-                          <td>{item.category}</td>
+                          <td>{item.sector}</td>
                           <td>{item.deadline}</td>
                           <td>{item.daysLeft}d</td>
-                          <td>{item.actionRequired}</td>
+                          <td><span className={`badge severity-${item.severity.toLowerCase()}`}>{item.severity}</span></td>
                           <td>{item.source}</td>
                         </>
                       )}
@@ -294,10 +302,10 @@ const Dashboard = () => {
                           <td>{item.region}</td>
                           <td>{item.country}</td>
                           <td className="title">{item.regulation}</td>
-                          <td>{item.category}</td>
+                          <td>{item.sector}</td>
                           <td>{item.deadline}</td>
                           <td>{item.daysLeft}d</td>
-                          <td><span className={`badge severity-${item.severity}`}>{item.severity?.toUpperCase()}</span></td>
+                          <td><span className={`badge severity-${item.severity.toLowerCase()}`}>{item.severity}</span></td>
                         </>
                       )}
                       {activeTab === 'recalls' && (

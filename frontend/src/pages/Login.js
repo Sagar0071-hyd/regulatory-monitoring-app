@@ -15,6 +15,17 @@ const Login = ({ onLogin }) => {
     setLoading(true);
 
     try {
+      // Check for admin credentials
+      if (email === 'Sagar0071@gmail.com' && password === 'Login@321') {
+        const token = 'admin-token-' + Math.random().toString(36).substr(2, 9);
+        onLogin(token, 'admin');
+        toast.success('Admin login successful!');
+        navigate('/dashboard');
+        setLoading(false);
+        return;
+      }
+
+      // Try API login for other users
       const response = await axios.post('/api/auth/login', {
         email,
         password,
@@ -27,8 +38,14 @@ const Login = ({ onLogin }) => {
         navigate('/dashboard');
       }
     } catch (err) {
-      const message = err.response?.data?.message || 'Login failed. Please try again.';
-      toast.error(message);
+      // If API fails, show error
+      if (email !== 'Sagar0071@gmail.com') {
+        const message = 'Backend API not available. Please deploy backend or use admin credentials.';
+        toast.error(message);
+      } else {
+        const message = err.response?.data?.message || 'Login failed. Please try again.';
+        toast.error(message);
+      }
     } finally {
       setLoading(false);
     }
