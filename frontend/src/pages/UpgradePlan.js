@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import './UpgradePlan.css';
 
 const UpgradePlan = () => {
-  const [plans, setPlans] = useState([
+  const [plans] = useState([
     {
       id: 1,
       name: 'Monthly',
