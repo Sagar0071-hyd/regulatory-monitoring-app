@@ -58,10 +58,20 @@
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .nav-button:hover {
   background-color: #c82333;
+}
+
+.btn-login {
+  background-color: #007bff;
+}
+
+.btn-login:hover {
+  background-color: #0056b3;
 }
 
 @media (max-width: 768px) {

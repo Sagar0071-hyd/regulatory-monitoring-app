@@ -14,23 +14,61 @@ const Dashboard = () => {
 
   const tabs = [
     { id: 'regulatory-updates', label: 'Regulatory Updates', icon: '📋' },
-    { id: 'ma-tracker', label: 'M&A Tracker', icon: '📈' },
     { id: 'deadline-countdown', label: 'Deadline Countdown', icon: '⏱️' },
     { id: 'recalls', label: 'Recalls', icon: '⚠️' },
+    { id: 'ma-tracker', label: 'M&A Tracker', icon: '📈' },
     { id: 'competitors', label: 'Competitors', icon: '🎯', restricted: true },
     { id: 'rfi-rfp', label: 'RFI/RFP', icon: '📄', restricted: true },
     { id: 'regulatory-services', label: 'Regulatory Services', icon: '🔧', restricted: true },
     { id: 'reg-tools', label: 'Reg. Tools', icon: '⚙️', restricted: true },
   ];
 
+  const sampleData = {
+    'regulatory-updates': [
+      { title: 'FDA Approves New Drug Classification', region: 'AMR', severity: 'high', productCategory: 'Pharma', createdAt: new Date() },
+      { title: 'EU Medical Device Directive Update', region: 'EUA', severity: 'medium', productCategory: 'Medical Devices', createdAt: new Date() },
+      { title: 'APAC Safety Standards Review', region: 'ROW', severity: 'low', productCategory: 'Food', createdAt: new Date() },
+    ],
+    'deadline-countdown': [
+      { title: 'ISO 13485 Compliance Deadline', region: 'EUA', severity: 'urgent', productCategory: 'Medical Devices', createdAt: new Date() },
+      { title: 'Chemical Substance Registration Due', region: 'AMR', severity: 'high', productCategory: 'Chemicals', createdAt: new Date() },
+    ],
+    'recalls': [
+      { title: 'Product Recall - Food Safety', region: 'AMR', severity: 'urgent', productCategory: 'Food', createdAt: new Date() },
+      { title: 'Household Product Safety Alert', region: 'EUA', severity: 'high', productCategory: 'Household', createdAt: new Date() },
+    ],
+    'ma-tracker': [
+      { title: 'Company Acquisition Announced', region: 'AMR', severity: 'medium', productCategory: 'Pharma', createdAt: new Date() },
+      { title: 'Merger Regulatory Review', region: 'EUA', severity: 'low', productCategory: 'Chemicals', createdAt: new Date() },
+    ],
+    'competitors': [
+      { title: 'Competitor Product Launch', region: 'AMR', severity: 'medium', productCategory: 'Pharma', createdAt: new Date() },
+      { title: 'Market Share Analysis', region: 'EUA', severity: 'low', productCategory: 'Food', createdAt: new Date() },
+    ],
+    'rfi-rfp': [
+      { title: 'RFP for Supply Chain Solutions', region: 'AMR', severity: 'high', productCategory: 'Services', createdAt: new Date() },
+      { title: 'Request for Information', region: 'EUA', severity: 'medium', productCategory: 'Services', createdAt: new Date() },
+    ],
+    'regulatory-services': [
+      { title: 'Compliance Consulting Services', region: 'AMR', severity: 'medium', productCategory: 'Services', createdAt: new Date() },
+      { title: 'Legal Advisory Services', region: 'EUA', severity: 'low', productCategory: 'Services', createdAt: new Date() },
+    ],
+    'reg-tools': [
+      { title: 'Compliance Management Software', region: 'AMR', severity: 'medium', productCategory: 'Software', createdAt: new Date() },
+      { title: 'Data Analytics Platform', region: 'EUA', severity: 'low', productCategory: 'Software', createdAt: new Date() },
+    ],
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/auth/me', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUser(response.data.user);
+        if (token) {
+          const response = await axios.get('/api/auth/me', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setUser(response.data.user);
+        }
       } catch (err) {
         console.error('Failed to fetch user:', err);
       }
@@ -49,17 +87,20 @@ const Dashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`/api/data/category/${tabId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setData(response.data.data || []);
+      if (token) {
+        const response = await axios.get(`/api/data/category/${tabId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setData(response.data.data || []);
+      } else {
+        setData(sampleData[tabId] || []);
+      }
     } catch (err) {
       if (err.response?.status === 403) {
         setRequiresUpgrade(true);
         setData([]);
       } else {
-        toast.error('Failed to fetch data. Please try again.');
+        setData(sampleData[tabId] || []);
       }
     } finally {
       setLoading(false);

@@ -53,21 +53,14 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {isAuthenticated && <Navigation onLogout={handleLogout} userRole={userRole} />}
+        <Navigation onLogout={handleLogout} userRole={userRole} isAuthenticated={isAuthenticated} />
         <Routes>
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/dashboard" element={<Dashboard />} />
 
           <Route
             path="/upgrade"
@@ -87,7 +80,7 @@ function App() {
             }
           />
 
-          <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
         <ToastContainer position="bottom-right" />
       </div>

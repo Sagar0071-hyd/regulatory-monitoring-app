@@ -2,12 +2,12 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navigation.css';
 
-const Navigation = ({ onLogout, userRole }) => {
+const Navigation = ({ onLogout, userRole, isAuthenticated }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     onLogout();
-    navigate('/login');
+    navigate('/dashboard');
   };
 
   return (
@@ -20,17 +20,26 @@ const Navigation = ({ onLogout, userRole }) => {
           <Link to="/dashboard" className="nav-link">
             Dashboard
           </Link>
-          <Link to="/upgrade" className="nav-link">
-            Upgrade Plan
-          </Link>
-          {userRole === 'admin' && (
-            <Link to="/admin" className="nav-link admin-link">
-              Admin Panel
+          {isAuthenticated && (
+            <>
+              <Link to="/upgrade" className="nav-link">
+                Upgrade Plan
+              </Link>
+              {userRole === 'admin' && (
+                <Link to="/admin" className="nav-link admin-link">
+                  Admin Panel
+                </Link>
+              )}
+              <button className="nav-button btn-logout" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          )}
+          {!isAuthenticated && (
+            <Link to="/login" className="nav-button btn-login">
+              Login
             </Link>
           )}
-          <button className="nav-button btn-logout" onClick={handleLogout}>
-            Logout
-          </button>
         </div>
       </div>
     </nav>
