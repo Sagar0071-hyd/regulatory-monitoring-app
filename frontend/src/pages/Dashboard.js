@@ -5,54 +5,53 @@ import './Dashboard.css';
 
 const sampleData = {
   'regulatory-updates': [
-    { title: 'EU MDR Class IIb Implantable Transition Deadline Passed', region: 'EUA', severity: 'urgent', productCategory: 'Medical Devices', createdAt: new Date('2026-05-22') },
-    { title: 'FDA AI/ML PCCP Guidance - Mandatory for Class II/III Devices', region: 'AMR', severity: 'high', productCategory: 'Devices', createdAt: new Date('2026-05-20') },
-    { title: 'ICH E8(R1) Phase I/II Compliance Effective - Japan PMDA', region: 'ROW', severity: 'high', productCategory: 'Pharma', createdAt: new Date('2026-05-19') },
-    { title: 'CDSCO Schedule A Cosmetics Prohibition Effective', region: 'EUA', severity: 'medium', productCategory: 'Cosmetics', createdAt: new Date('2026-06-01') },
-    { title: 'ECHA REACH SVHC Notification Window Extended', region: 'EUA', severity: 'medium', productCategory: 'Chemicals', createdAt: new Date('2026-05-25') },
+    { region: 'AMR', country: 'USA', regulation: 'FDA GLP-1 Compounding — Cease manufacturing', category: 'Pharma', deadline: '2026-05-22', daysLeft: 2, actionRequired: 'Halt production', source: 'FDA' },
+    { region: 'EUA', country: 'India', regulation: 'CDSCO Schedule A Cosmetics — Reformulation declarations', category: 'Cosmetics', deadline: '2026-05-25', daysLeft: 5, actionRequired: 'Submit reformulation', source: 'CDSCO' },
+    { region: 'EUA', country: 'EU', regulation: 'EU MDR EUDAMED — Actor Registration & UDI Database', category: 'Devices', deadline: '2026-05-26', daysLeft: 6, actionRequired: 'Register actors', source: 'EMA' },
+    { region: 'EUA', country: 'India', regulation: 'MoEFCC PFAS Restriction — Consultation closes', category: 'Chemicals', deadline: '2026-05-30', daysLeft: 10, actionRequired: 'Comment on proposal', source: 'MoEFCC' },
+    { region: 'AMR', country: 'USA', regulation: 'EPA Formaldehyde (Home Care) — Comment period closes', category: 'Household', deadline: '2026-05-30', daysLeft: 10, actionRequired: 'Submit comment', source: 'EPA' },
   ],
   'deadline-countdown': [
-    { title: 'FDA GLP-1 Compounding — Cease Manufacturing', region: 'AMR', severity: 'urgent', productCategory: 'Pharma', createdAt: new Date('2026-05-22') },
-    { title: 'CDSCO Schedule A Cosmetics — Reformulation Declarations', region: 'EUA', severity: 'urgent', productCategory: 'Cosmetics', createdAt: new Date('2026-05-25') },
-    { title: 'EU MDR EUDAMED — Actor Registration & UDI Database', region: 'EUA', severity: 'urgent', productCategory: 'Devices', createdAt: new Date('2026-05-26') },
-    { title: 'EU IVDR — Class C & D IVD Notified Body Certificate', region: 'EUA', severity: 'urgent', productCategory: 'Devices', createdAt: new Date('2026-05-26') },
-    { title: 'MoEFCC PFAS Restriction — Consultation Closes', region: 'EUA', severity: 'high', productCategory: 'Chemicals', createdAt: new Date('2026-05-30') },
+    { region: 'AMR', country: 'USA', regulation: 'FDA GLP-1 Compounding', category: 'Pharma', deadline: '2026-05-22', daysLeft: 2, severity: 'urgent' },
+    { region: 'EUA', country: 'India', regulation: 'CDSCO Schedule A Cosmetics Prohibition', category: 'Cosmetics', deadline: '2026-06-01', daysLeft: 12, severity: 'urgent' },
+    { region: 'EUA', country: 'EU', regulation: 'EU MDR EUDAMED — Actor Registration', category: 'Devices', deadline: '2026-05-26', daysLeft: 6, severity: 'urgent' },
+    { region: 'EUA', country: 'EU', regulation: 'EU IVDR — Class C & D IVD Notified Body', category: 'Devices', deadline: '2026-05-26', daysLeft: 6, severity: 'urgent' },
+    { region: 'EUA', country: 'India', regulation: 'MoEFCC PFAS Restriction', category: 'Chemicals', deadline: '2026-05-30', daysLeft: 10, severity: 'high' },
   ],
   'recalls': [
-    { title: 'Metformin HCl ER Tablets - NDMA Exceeds Acceptable Daily Intake', region: 'AMR', severity: 'urgent', productCategory: 'Pharma', createdAt: new Date('2026-05-20') },
-    { title: 'IGIV-C Intravenous Immunoglobulin - Glass Fragment Contamination', region: 'AMR', severity: 'urgent', productCategory: 'Biologics', createdAt: new Date('2026-05-18') },
-    { title: 'ProFuel Energy Bars - Undeclared Tree Nuts', region: 'AMR', severity: 'urgent', productCategory: 'Food', createdAt: new Date('2026-05-15') },
-    { title: 'Amoxicillin + Clavulanate Tablets - Sub-standard Quality', region: 'EUA', severity: 'high', productCategory: 'Pharma', createdAt: new Date('2026-05-17') },
-    { title: 'InsuPump i-Pro - Motor Failure Causing Uncontrolled Insulin Delivery', region: 'ROW', severity: 'urgent', productCategory: 'Devices', createdAt: new Date('2026-05-14') },
+    { region: 'AMR', country: 'USA', product: 'Metformin HCl ER Tablets', company: 'Sun Pharma', category: 'Pharma', severity: 'Class I', reason: 'NDMA exceeds acceptable daily intake', date: '2026-05-20', source: 'FDA' },
+    { region: 'AMR', country: 'USA', product: 'IGIV-C Intravenous Immunoglobulin', company: 'BioAtla LLC', category: 'Biologics', severity: 'Class I', reason: 'Glass fragment contamination', date: '2026-05-18', source: 'FDA' },
+    { region: 'AMR', country: 'USA', product: 'ProFuel Energy Bars', company: 'NutraBiotics Inc.', category: 'Food', severity: 'Class I', reason: 'Undeclared tree nuts', date: '2026-05-15', source: 'FDA' },
+    { region: 'EUA', country: 'India', product: 'Amoxicillin + Clavulanate Tablets', company: 'Cipla Limited', category: 'Pharma', severity: 'Class I', reason: 'Sub-standard quality; active content below 85%', date: '2026-05-17', source: 'CDSCO' },
+    { region: 'ROW', country: 'China', product: 'InsuPump i-Pro Insulin Infusion Pump', company: 'MicroTech Medical', category: 'Devices', severity: 'Class I', reason: 'Motor failure causing uncontrolled insulin delivery', date: '2026-05-14', source: 'NMPA' },
   ],
   'ma-tracker': [
-    { title: 'Syneos Health Acquires Clarivate Regulatory Intelligence - USD 320M', region: 'AMR', severity: 'medium', productCategory: 'Services', createdAt: new Date('2026-05-22') },
-    { title: 'ICON plc Acquires Accellacare Regulatory Division - USD 280M', region: 'AMR', severity: 'medium', productCategory: 'Services', createdAt: new Date('2026-05-20') },
-    { title: 'Global M&A Activity in Regulatory Tech Sector', region: 'AMR', severity: 'low', productCategory: 'Services', createdAt: new Date('2026-05-18') },
+    { acquirer: 'Syneos Health', target: 'Clarivate Regulatory Intelligence', sector: 'Regulatory Tech', value: 'USD 320M', date: '2026-05-22', driver: 'Cortellis database integration' },
+    { acquirer: 'ICON plc', target: 'Accellacare Regulatory Division', sector: 'Regulatory Consulting', value: 'USD 280M', date: '2026-05-20', driver: 'Regulatory advisory expansion' },
   ],
   'competitors': [
-    { title: 'Veeva Systems Launches Vault RIM AI with Generative AI Assistant', region: 'AMR', severity: 'medium', productCategory: 'Software', createdAt: new Date('2026-05-22') },
-    { title: 'Navitas Life Sciences Introduces NavRegAI Regulatory Intelligence Engine', region: 'AMR', severity: 'medium', productCategory: 'Software', createdAt: new Date('2026-05-20') },
-    { title: 'PharmaLex Opens AI-Enabled Regulatory Excellence Centre in Hyderabad', region: 'ROW', severity: 'medium', productCategory: 'Services', createdAt: new Date('2026-05-19') },
-    { title: 'Extedo Releases IDMP Suite v5.0 with Automated Validation', region: 'EUA', severity: 'low', productCategory: 'Software', createdAt: new Date('2026-05-18') },
+    { company: 'Veeva Systems', type: 'Solution Launch', service: 'Vault RIM AI with generative AI assistant', markets: 'Global', date: '2026-05-22' },
+    { company: 'Navitas Life Sciences', type: 'Solution Launch', service: 'NavRegAI regulatory intelligence engine', markets: 'Global', date: '2026-05-20' },
+    { company: 'PharmaLex (Cencora)', type: 'Center Launch', service: 'AI-Enabled Regulatory Excellence Centre', markets: 'APAC', date: '2026-05-19' },
+    { company: 'Extedo', type: 'Product Release', service: 'IDMP Suite v5.0 with automated validation', markets: 'EU', date: '2026-05-18' },
   ],
   'rfi-rfp': [
-    { title: 'Astellas Pharma - Global eCTD Authoring Gateway RFP', region: 'AMR', severity: 'high', productCategory: 'Services', createdAt: new Date('2026-05-22') },
-    { title: 'Bayer AG - Cloud-native RIMS Platform (100+ Markets)', region: 'EUA', severity: 'high', productCategory: 'Software', createdAt: new Date('2026-05-20') },
-    { title: 'Takeda Pharmaceutical - Enterprise RIMS Upgrade RFP', region: 'ROW', severity: 'high', productCategory: 'Software', createdAt: new Date('2026-05-18') },
-    { title: 'Sanofi SA - AI-Powered Labelling & Artwork Management', region: 'AMR', severity: 'high', productCategory: 'Software', createdAt: new Date('2026-05-17') },
+    { company: 'Astellas Pharma', type: 'Innovator', service: 'Global eCTD authoring & submissions gateway', markets: 'USA, EU, Japan, China, Canada', status: 'Confirmed', timeline: '2026–2027' },
+    { company: 'Bayer AG', type: 'Innovator', service: 'Cloud-native RIMS platform (100+ markets)', markets: 'Global', status: 'Confirmed', timeline: '2026–H1 2027' },
+    { company: 'Takeda Pharmaceutical', type: 'Innovator', service: 'Enterprise RIMS upgrade post-Shire integration', markets: 'Global', status: 'Confirmed', timeline: '2026–2027' },
+    { company: 'Sanofi SA', type: 'Innovator', service: 'AI-powered labelling & artwork management', markets: 'Global', status: 'Confirmed', timeline: '2026–H1 2027' },
   ],
   'regulatory-services': [
-    { title: 'Parexel - Exclusive FSP for Takeda Oncology Portfolio', region: 'ROW', severity: 'medium', productCategory: 'Services', createdAt: new Date('2026-05-20') },
-    { title: 'RCA - FDA Warning Letter Remediation for Generic Manufacturers', region: 'AMR', severity: 'high', productCategory: 'Services', createdAt: new Date('2026-05-18') },
-    { title: 'Halloran Consulting - EU MDR/IVDR Practice Launch', region: 'EUA', severity: 'medium', productCategory: 'Services', createdAt: new Date('2026-05-15') },
-    { title: 'Maetrics - AI-Powered Technical File Review for MDR Devices', region: 'EUA', severity: 'medium', productCategory: 'Software', createdAt: new Date('2026-05-12') },
+    { provider: 'Parexel International', type: 'FSP', service: 'Exclusive regulatory FSP for Takeda oncology portfolio', scope: '200+ licences' },
+    { provider: 'Regulatory Compliance Associates (RCA)', type: 'Consulting', service: 'FDA Warning Letter remediation for generic manufacturers', scope: 'USD 18M combined' },
+    { provider: 'Halloran Consulting Group', type: 'Practice Launch', service: 'EU MDR/IVDR practice with 12 specialists', scope: 'EU27' },
+    { provider: 'Maetrics', type: 'Technology', service: 'AI-Powered Technical File Review for MDR Class IIb/III devices', scope: '40% faster' },
   ],
   'reg-tools': [
-    { title: 'Master Control - Enterprise QMS & Submissions (1,200-seat Deployment)', region: 'AMR', severity: 'medium', productCategory: 'Software', createdAt: new Date('2026-05-22') },
-    { title: 'Compliance Quest - MedDevice Module Release', region: 'AMR', severity: 'medium', productCategory: 'Software', createdAt: new Date('2026-05-20') },
-    { title: 'OpenText Documentum - Extended ECM for Life Sciences', region: 'EUA', severity: 'low', productCategory: 'Software', createdAt: new Date('2026-05-18') },
-    { title: 'Generis Technologies - CARA 8.0 with ISO IDMP Compliance', region: 'EUA', severity: 'low', productCategory: 'Software', createdAt: new Date('2026-05-15') },
+    { vendor: 'Master Control', tool: 'Enterprise QMS & submissions', features: '1,200-seat Hikma Pharmaceuticals deployment', launchDate: '2026-05-22' },
+    { vendor: 'Compliance Quest', tool: 'MedDevice module', features: 'FDA 21 CFR Part 820 + eSTAR integration', launchDate: '2026-05-20' },
+    { vendor: 'OpenText (Documentum)', tool: 'Extended ECM for Life Sciences', features: 'Sanofi global enterprise deployment (40 countries)', launchDate: '2026-05-18' },
+    { vendor: 'Generis Technologies', tool: 'CARA 8.0', features: 'ISO IDMP-compliant product data model', launchDate: '2026-05-15' },
   ],
 };
 
@@ -68,7 +67,7 @@ const Dashboard = () => {
     { id: 'regulatory-updates', label: 'Regulatory Updates', icon: '📋' },
     { id: 'deadline-countdown', label: 'Deadline Countdown', icon: '⏱️' },
     { id: 'recalls', label: 'Recalls', icon: '⚠️' },
-    { id: 'ma-tracker', label: 'M&A Tracker', icon: '📈' },
+    { id: 'ma-tracker', label: 'M&A Tracker', icon: '📈', restricted: true },
     { id: 'competitors', label: 'Competitors', icon: '🎯', restricted: true },
     { id: 'rfi-rfp', label: 'RFI/RFP', icon: '📄', restricted: true },
     { id: 'regulatory-services', label: 'Regulatory Services', icon: '🔧', restricted: true },
@@ -192,25 +191,173 @@ const Dashboard = () => {
               <table>
                 <thead>
                   <tr>
-                    <th>Title</th>
-                    <th>Region</th>
-                    <th>Severity</th>
-                    <th>Category</th>
-                    <th>Date</th>
+                    {activeTab === 'regulatory-updates' && (
+                      <>
+                        <th>Region</th>
+                        <th>Country</th>
+                        <th>Regulation/Event</th>
+                        <th>Category</th>
+                        <th>Deadline</th>
+                        <th>Days Left</th>
+                        <th>Action Required</th>
+                        <th>Source</th>
+                      </>
+                    )}
+                    {activeTab === 'deadline-countdown' && (
+                      <>
+                        <th>Region</th>
+                        <th>Country</th>
+                        <th>Regulation/Event</th>
+                        <th>Category</th>
+                        <th>Deadline</th>
+                        <th>Days Left</th>
+                        <th>Severity</th>
+                      </>
+                    )}
+                    {activeTab === 'recalls' && (
+                      <>
+                        <th>Region</th>
+                        <th>Country</th>
+                        <th>Product</th>
+                        <th>Company</th>
+                        <th>Category</th>
+                        <th>Severity</th>
+                        <th>Reason</th>
+                        <th>Date</th>
+                        <th>Source</th>
+                      </>
+                    )}
+                    {activeTab === 'ma-tracker' && (
+                      <>
+                        <th>Acquirer</th>
+                        <th>Target</th>
+                        <th>Sector</th>
+                        <th>Value</th>
+                        <th>Date</th>
+                        <th>Strategic Driver</th>
+                      </>
+                    )}
+                    {activeTab === 'competitors' && (
+                      <>
+                        <th>Company</th>
+                        <th>Type</th>
+                        <th>Service/Tool</th>
+                        <th>Markets</th>
+                        <th>Date</th>
+                      </>
+                    )}
+                    {activeTab === 'rfi-rfp' && (
+                      <>
+                        <th>Company</th>
+                        <th>Type</th>
+                        <th>Service Required</th>
+                        <th>Markets</th>
+                        <th>Status</th>
+                        <th>Timeline</th>
+                      </>
+                    )}
+                    {activeTab === 'regulatory-services' && (
+                      <>
+                        <th>Provider</th>
+                        <th>Type</th>
+                        <th>Service</th>
+                        <th>Scope</th>
+                      </>
+                    )}
+                    {activeTab === 'reg-tools' && (
+                      <>
+                        <th>Vendor</th>
+                        <th>Tool</th>
+                        <th>Features</th>
+                        <th>Launch Date</th>
+                      </>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
                   {data.map((item, idx) => (
                     <tr key={idx}>
-                      <td className="title">{item.title}</td>
-                      <td>{item.region || 'N/A'}</td>
-                      <td>
-                        <span className={`severity ${item.severity}`}>
-                          {item.severity?.toUpperCase()}
-                        </span>
-                      </td>
-                      <td>{item.productCategory || 'N/A'}</td>
-                      <td>{new Date(item.createdAt).toLocaleDateString()}</td>
+                      {activeTab === 'regulatory-updates' && (
+                        <>
+                          <td>{item.region}</td>
+                          <td>{item.country}</td>
+                          <td className="title">{item.regulation}</td>
+                          <td>{item.category}</td>
+                          <td>{item.deadline}</td>
+                          <td>{item.daysLeft}d</td>
+                          <td>{item.actionRequired}</td>
+                          <td>{item.source}</td>
+                        </>
+                      )}
+                      {activeTab === 'deadline-countdown' && (
+                        <>
+                          <td>{item.region}</td>
+                          <td>{item.country}</td>
+                          <td className="title">{item.regulation}</td>
+                          <td>{item.category}</td>
+                          <td>{item.deadline}</td>
+                          <td>{item.daysLeft}d</td>
+                          <td><span className={`badge severity-${item.severity}`}>{item.severity?.toUpperCase()}</span></td>
+                        </>
+                      )}
+                      {activeTab === 'recalls' && (
+                        <>
+                          <td>{item.region}</td>
+                          <td>{item.country}</td>
+                          <td className="title">{item.product}</td>
+                          <td>{item.company}</td>
+                          <td>{item.category}</td>
+                          <td><span className={`badge recall-${item.severity}`}>{item.severity}</span></td>
+                          <td>{item.reason}</td>
+                          <td>{item.date}</td>
+                          <td>{item.source}</td>
+                        </>
+                      )}
+                      {activeTab === 'ma-tracker' && (
+                        <>
+                          <td className="title">{item.acquirer}</td>
+                          <td>{item.target}</td>
+                          <td>{item.sector}</td>
+                          <td><strong>{item.value}</strong></td>
+                          <td>{item.date}</td>
+                          <td>{item.driver}</td>
+                        </>
+                      )}
+                      {activeTab === 'competitors' && (
+                        <>
+                          <td className="title">{item.company}</td>
+                          <td>{item.type}</td>
+                          <td>{item.service}</td>
+                          <td>{item.markets}</td>
+                          <td>{item.date}</td>
+                        </>
+                      )}
+                      {activeTab === 'rfi-rfp' && (
+                        <>
+                          <td className="title">{item.company}</td>
+                          <td>{item.type}</td>
+                          <td>{item.service}</td>
+                          <td>{item.markets}</td>
+                          <td><span className={`badge status-${item.status}`}>{item.status}</span></td>
+                          <td>{item.timeline}</td>
+                        </>
+                      )}
+                      {activeTab === 'regulatory-services' && (
+                        <>
+                          <td className="title">{item.provider}</td>
+                          <td>{item.type}</td>
+                          <td>{item.service}</td>
+                          <td>{item.scope}</td>
+                        </>
+                      )}
+                      {activeTab === 'reg-tools' && (
+                        <>
+                          <td className="title">{item.vendor}</td>
+                          <td>{item.tool}</td>
+                          <td>{item.features}</td>
+                          <td>{item.launchDate}</td>
+                        </>
+                      )}
                     </tr>
                   ))}
                 </tbody>
