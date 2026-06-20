@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
@@ -77,11 +76,7 @@ const Dashboard = () => {
     fetchUser();
   }, []);
 
-  useEffect(() => {
-    fetchTabData(activeTab);
-  }, [activeTab]);
-
-  const fetchTabData = async (tabId) => {
+  const fetchTabData = useCallback(async (tabId) => {
     setLoading(true);
     setRequiresUpgrade(false);
 
@@ -105,7 +100,11 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchTabData(activeTab);
+  }, [activeTab, fetchTabData]);
 
   const currentTab = tabs.find(t => t.id === activeTab);
   const isRestricted = currentTab?.restricted;
