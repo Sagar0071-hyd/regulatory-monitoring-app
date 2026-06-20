@@ -1,0 +1,277 @@
+.upgrade-plan {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.upgrade-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.upgrade-header h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.upgrade-header p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.premium-badge {
+  display: inline-block;
+  background-color: #d4edda;
+  color: #155724;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  border-left: 4px solid #28a745;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.plan-card.popular {
+  border: 2px solid #667eea;
+  transform: scale(1.05);
+}
+
+.plan-card.popular:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.plan-card h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.amount {
+  font-size: 36px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.duration {
+  color: #666;
+  font-size: 14px;
+}
+
+.features {
+  list-style: none;
+  margin-bottom: 30px;
+  flex-grow: 1;
+}
+
+.features li {
+  padding: 12px 0;
+  color: #555;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.features li:last-child {
+  border-bottom: none;
+}
+
+.plan-card .btn {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #5568d3;
+}
+
+.btn-secondary {
+  background-color: #e9ecef;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #dee2e6;
+}
+
+.plan-card .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Payment Methods */
+.payment-methods {
+  background: white;
+  padding: 50px;
+  border-radius: 8px;
+  margin-bottom: 60px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-methods h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+}
+
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.method-card {
+  background: linear-gradient(135deg, #f0f0f0 0%, #f9f9f9 100%);
+  padding: 25px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.method-card:hover {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.method-card .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.method-card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.method-card:hover h3 {
+  color: white;
+}
+
+.method-card p {
+  font-size: 13px;
+  color: #666;
+}
+
+.method-card:hover p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* FAQ Section */
+.faq-section {
+  background: white;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-section h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.faq-item {
+  padding: 25px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.faq-item h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.faq-item p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .upgrade-header h1 {
+    font-size: 24px;
+  }
+
+  .plans-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .plan-card.popular {
+    transform: scale(1);
+  }
+
+  .plan-card.popular:hover {
+    transform: translateY(-5px);
+  }
+
+  .payment-methods,
+  .faq-section {
+    padding: 30px;
+  }
+
+  .methods-grid,
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
